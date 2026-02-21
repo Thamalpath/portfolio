@@ -28,7 +28,7 @@ export default function MainFeaturedProject({
             loop
             muted
             playsInline
-            className="w-full h-full object-cover mix-blend-lighten opacity-90 brightness-100 contrast-110 transition-opacity duration-800"
+            className="w-full h-full object-cover mix-blend-lighten opacity-120 brightness-80 contrast-120 transition-opacity duration-800"
           >
             <source src="/moonlit-ronin.mp4" type="video/mp4" />
           </video>
