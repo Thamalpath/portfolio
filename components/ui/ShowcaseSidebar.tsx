@@ -19,18 +19,56 @@ const navItems = [
 
 export default function ShowcaseSidebar({ activeTab = "home" }: SidebarProps) {
   return (
-    <aside className="hidden md:flex flex-col gap-4 py-10 px-4 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[45px] h-fit self-center shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative z-50">
-      <div className="flex flex-col gap-3">
-        {navItems.map((item) => (
-          <NavItem
-            key={item.id}
-            icon={item.icon}
-            label={item.label}
-            active={activeTab === item.id}
-          />
-        ))}
-      </div>
-    </aside>
+    <>
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:flex flex-col gap-4 py-10 px-4 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[45px] h-fit self-center shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative z-50">
+        <div className="flex flex-col gap-3">
+          {navItems.map((item) => (
+            <NavItem
+              key={item.id}
+              icon={item.icon}
+              label={item.label}
+              active={activeTab === item.id}
+            />
+          ))}
+        </div>
+      </aside>
+
+      {/* Mobile/Tablet Bottom Navigation */}
+      <nav className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-md">
+        <div className="bg-black/60 backdrop-blur-3xl border border-white/10 rounded-full px-4 py-3 flex items-center justify-around shadow-2xl">
+          {navItems.map((item) => (
+            <MobileNavItem
+              key={item.id}
+              icon={item.icon}
+              active={activeTab === item.id}
+            />
+          ))}
+        </div>
+      </nav>
+    </>
+  );
+}
+
+function MobileNavItem({
+  icon: Icon,
+  active = false,
+}: {
+  icon: LucideIcon;
+  active?: boolean;
+}) {
+  return (
+    <motion.div
+      whileTap={{ scale: 0.9 }}
+      className={cn(
+        "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
+        active
+          ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]"
+          : "text-gray-400",
+      )}
+    >
+      <Icon size={20} />
+    </motion.div>
   );
 }
 
@@ -87,7 +125,7 @@ function NavItem({
             animate={{ opacity: 1, x: 20, scale: 1 }}
             exit={{ opacity: 0, x: 10, scale: 0.9 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="absolute left-full ml-4 px-4 py-2 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-xl text-white text-sm font-bold whitespace-nowrap shadow-2xl pointer-events-none z-[100]"
+            className="absolute left-full ml-4 px-4 py-2 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-xl text-white text-sm font-bold whitespace-nowrap shadow-2xl pointer-events-none z-100"
           >
             <div className="absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white/10 border-l border-t border-white/20 -rotate-45" />
             {label}

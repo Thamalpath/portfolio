@@ -15,7 +15,7 @@ export default function MainFeaturedProject({
   titleSuffix,
 }: MainFeaturedProjectProps) {
   return (
-    <div className="relative flex-1 flex flex-col p-8 md:p-12 justify-between min-h-[500px]">
+    <div className="relative flex-1 flex flex-col p-6 md:p-12 justify-between min-h-[400px] md:min-h-[500px]">
       {/* Background Video/Art Layer */}
       <div className="absolute inset-0 z-0 bg-linear-to-br from-[#1a1a1a] via-[#0d1b1b] to-[#0a0a0a]">
         <div className="absolute inset-0 bg-neon-blue/5 mix-blend-color-dodge" />
@@ -38,21 +38,23 @@ export default function MainFeaturedProject({
       <div className="relative z-10 h-full flex flex-col justify-between">
         {/* Top Brand */}
         <div className="flex justify-between items-start">
-          <span className="text-2xl font-black tracking-widest drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] uppercase">
+          <span className="text-xl md:text-2xl font-black tracking-widest drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] uppercase">
             コデラボ
           </span>
         </div>
 
         {/* Branding Content */}
-        <div className="max-w-md mt-auto mb-12">
-          <span className="text-sm font-bold tracking-[0.3em] uppercase opacity-60 mb-2 block">
+        <div className="max-w-md mt-auto mb-8 md:mb-12">
+          <span className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase opacity-60 mb-2 block text-center md:text-left">
             {projectNumber}
           </span>
-          <h1 className="text-6xl md:text-7xl font-black mb-10 tracking-tighter leading-tight font-mono">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 md:mb-10 tracking-tighter leading-tight font-mono text-center md:text-left">
             {titlePrefix} <span className="text-neon-blue">{titleSuffix}</span>
           </h1>
 
-          <ActionButton label="View Experience" />
+          <div className="flex justify-center md:justify-start">
+            <ActionButton label="View Experience" />
+          </div>
         </div>
       </div>
     </div>

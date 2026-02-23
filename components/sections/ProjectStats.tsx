@@ -25,16 +25,18 @@ function StatItem({ icon: Icon, label, color }: StatItemProps) {
 
 export default function ProjectStats() {
   return (
-    <div className="flex justify-center md:justify-start">
-      <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[40px] px-8 py-3 flex items-center gap-10 shadow-lg">
-        <StatItem icon={Heart} label="6.4k" color="text-red-400" />
-        <div className="h-6 w-px bg-white/10" />
-        <StatItem icon={Star} label="4.8k" color="text-yellow-400" />
-        <div className="h-6 w-px bg-white/10" />
-        <StatItem icon={Bookmark} label="9.8k" color="text-neon-blue" />
+    <div className="flex justify-center md:justify-start w-full">
+      <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[30px] md:rounded-[40px] px-6 md:px-8 py-3 flex items-center justify-between md:justify-start gap-4 md:gap-10 shadow-lg w-full md:w-auto">
+        <div className="flex items-center gap-4 md:gap-10">
+          <StatItem icon={Heart} label="6.4k" color="text-red-400" />
+          <div className="h-6 w-px bg-white/10" />
+          <StatItem icon={Star} label="4.8k" color="text-yellow-400" />
+          <div className="h-6 w-px bg-white/10" />
+          <StatItem icon={Bookmark} label="9.8k" color="text-neon-blue" />
+        </div>
 
-        <div className="ml-4 p-3 bg-neon-blue rounded-full text-black hover:scale-110 transition-transform cursor-pointer">
-          <Download size={20} />
+        <div className="p-3 bg-neon-blue rounded-full text-black hover:scale-110 transition-transform cursor-pointer shrink-0">
+          <Download size={18} />
         </div>
       </div>
     </div>

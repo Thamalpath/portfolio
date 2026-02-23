@@ -12,13 +12,13 @@ export default function Home() {
     <DashboardLayout
       sidebar={<ShowcaseSidebar activeTab="home" />}
       main={
-        <div className="flex-1 flex flex-col relative">
+        <div className="flex-1 flex flex-col relative min-h-[500px] md:min-h-0">
           <MainFeaturedProject
             projectNumber="Lead Engineer 01"
             titlePrefix="THE RONIN"
             titleSuffix="SYSTEMS"
           />
-          <div className="absolute bottom-12 left-12 z-20">
+          <div className="md:absolute md:bottom-12 md:left-12 z-20 p-6 md:p-0">
             <ProjectStats />
           </div>
         </div>
