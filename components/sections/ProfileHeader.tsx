@@ -15,6 +15,9 @@ export default function ProfileHeader({ name }: ProfileHeaderProps) {
     >
       <div className="flex flex-col">
         <span className="text-lg md:text-xl font-bold">{name}</span>
+        <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider opacity-50">
+          Full-Stack Software Engineer
+        </span>
       </div>
       <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-neon-blue p-1 overflow-hidden">
         <div className="w-full h-full rounded-full bg-linear-to-tr from-cyan-500 to-emerald-500" />

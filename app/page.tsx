@@ -3,9 +3,7 @@
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import ShowcaseSidebar from "@/components/ui/ShowcaseSidebar";
 import MainFeaturedProject from "@/components/sections/MainFeaturedProject";
-import ProfileHeader from "@/components/sections/ProfileHeader";
-import ProjectStats from "@/components/sections/ProjectStats";
-import ProjectShowcase from "@/components/sections/ProjectShowcase";
+import RightSidePanel from "@/components/sections/RightSidePanel";
 
 export default function Home() {
   return (
@@ -14,21 +12,12 @@ export default function Home() {
       main={
         <div className="flex-1 flex flex-col relative">
           <MainFeaturedProject
-            projectNumber="Lead Engineer 01"
-            titlePrefix="THE RONIN"
-            titleSuffix="SYSTEMS"
+            titlePrefix="FULL - STACK"
+            titleSuffix="DEVELOPER"
           />
-          <div className="absolute bottom-12 left-12 z-20">
-            <ProjectStats />
-          </div>
         </div>
       }
-      aside={
-        <div className="flex flex-col gap-4 h-full">
-          <ProfileHeader name="Thamalpath" />
-          <ProjectShowcase />
-        </div>
-      }
+      aside={<RightSidePanel name="Thamalpath" />}
     />
   );
 }

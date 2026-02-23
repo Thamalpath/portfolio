@@ -4,13 +4,11 @@ import { motion } from "framer-motion";
 import ActionButton from "@/components/ui/ActionButton";
 
 interface MainFeaturedProjectProps {
-  projectNumber: string;
   titlePrefix: string;
   titleSuffix: string;
 }
 
 export default function MainFeaturedProject({
-  projectNumber,
   titlePrefix,
   titleSuffix,
 }: MainFeaturedProjectProps) {
@@ -45,14 +43,14 @@ export default function MainFeaturedProject({
 
         {/* Branding Content */}
         <div className="max-w-md mt-auto mb-8 md:mb-12">
-          <span className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase opacity-60 mb-2 block">
-            {projectNumber}
-          </span>
-          <h1 className="text-4xl md:text-7xl 2xl:text-8xl font-black mb-6 md:mb-10 tracking-tighter leading-tight font-mono">
+          <h1 className="text-3xl md:text-6xl 2xl:text-6xl font-black mb-6 md:mb-10 tracking-normal leading-tight font-sans">
             {titlePrefix} <span className="text-neon-blue">{titleSuffix}</span>
           </h1>
 
-          <ActionButton label="View Experience" />
+          <div className="flex gap-4">
+            <ActionButton label="View Projects" />
+            <ActionButton label="Contact Me" />
+          </div>
         </div>
       </div>
     </div>
