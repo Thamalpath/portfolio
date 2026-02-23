@@ -26,15 +26,15 @@ function StatItem({ icon: Icon, label, color }: StatItemProps) {
 export default function ProjectStats() {
   return (
     <div className="flex justify-center md:justify-start">
-      <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[40px] px-8 py-3 flex items-center gap-10 shadow-lg">
+      <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[30px] md:rounded-[40px] px-4 md:px-8 py-2 md:py-3 flex items-center gap-4 md:gap-10 shadow-lg">
         <StatItem icon={Heart} label="6.4k" color="text-red-400" />
-        <div className="h-6 w-px bg-white/10" />
+        <div className="h-4 md:h-6 w-px bg-white/10" />
         <StatItem icon={Star} label="4.8k" color="text-yellow-400" />
-        <div className="h-6 w-px bg-white/10" />
+        <div className="h-4 md:h-6 w-px bg-white/10" />
         <StatItem icon={Bookmark} label="9.8k" color="text-neon-blue" />
 
-        <div className="ml-4 p-3 bg-neon-blue rounded-full text-black hover:scale-110 transition-transform cursor-pointer">
-          <Download size={20} />
+        <div className="ml-2 md:ml-4 p-2 md:p-3 bg-neon-blue rounded-full text-black hover:scale-110 transition-transform cursor-pointer">
+          <Download size={16} className="md:w-5 md:h-5" />
         </div>
       </div>
     </div>
