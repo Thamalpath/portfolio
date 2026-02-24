@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ProjectMedia from "./ProjectMedia";
 
 const statusConfig = {
   Live: {
@@ -88,7 +89,6 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
 
   return (
     <div className="relative flex-1 flex flex-col overflow-hidden">
-      {/* Background — same dark base as the rest of the portfolio */}
       <div className="absolute inset-0 z-0 bg-[#030014]">
         <div className="absolute inset-0 opacity-[0.07] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
         {/* Accent glow derived from project color */}
@@ -104,7 +104,7 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
 
       {/* Scrollable Content */}
       <div className="custom-scroll relative z-10 flex-1 overflow-y-auto">
-        <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 max-w-3xl xl:max-w-4xl mx-auto w-full">
+        <div className="p-2 sm:p-6 md:p-8 lg:p-10 xl:p-12 max-w-3xl xl:max-w-6xl mx-auto w-full">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -116,7 +116,7 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
               onClick={() => router.push("/projects")}
               whileHover={{ x: -3 }}
               whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors duration-200 mb-8 sm:mb-10 group"
+              className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors duration-200 mb-4 sm:mb-6 group"
             >
               <span className="w-7 h-7 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center group-hover:border-white/25 group-hover:bg-white/8 transition-all duration-200">
                 <ArrowLeft size={14} />
@@ -127,9 +127,9 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
             </motion.button>
 
             {/* ── Header ── */}
-            <motion.div variants={itemVariants} className="mb-8 sm:mb-10">
+            <motion.div variants={itemVariants}>
               {/* Badges row */}
-              <div className="flex flex-wrap items-center gap-2 mb-4 sm:mb-5">
+              <div className="flex flex-wrap items-center gap-2 mb-2 sm:mb-4">
                 <span
                   className={cn(
                     "inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border",
@@ -154,7 +154,7 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black tracking-tight leading-none mb-3 sm:mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black tracking-tight leading-none mb-4 sm:mb-2">
                 <span
                   style={{
                     color: project.accentColor,
@@ -166,7 +166,7 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
               </h1>
 
               {/* Tagline */}
-              <p className="text-sm sm:text-base md:text-lg text-white/55 font-medium leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-white/55 font-medium leading-relaxed mb-2 sm:mb-4">
                 {project.tagline}
               </p>
             </motion.div>
@@ -174,7 +174,7 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
             {/* ── Action Links ── */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-10"
+              className="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6"
             >
               {project.liveUrl && (
                 <motion.a
@@ -193,25 +193,22 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
                   Live Demo
                 </motion.a>
               )}
-              {project.githubUrl && (
-                <motion.a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-white/5 border border-white/15 hover:bg-white/10 hover:border-white/25 transition-all duration-300"
-                >
-                  <Github size={14} />
-                  Source Code
-                </motion.a>
-              )}
             </motion.div>
+
+            {/* ── Media Showcase ── */}
+            {project.media && project.media.length > 0 && (
+              <motion.div variants={itemVariants}>
+                <ProjectMedia 
+                  media={project.media} 
+                  accentColor={project.accentColor} 
+                />
+              </motion.div>
+            )}
 
             {/* ── Divider ── */}
             <motion.div
               variants={itemVariants}
-              className="h-px mb-8 sm:mb-10"
+              className="h-px mb-4 sm:mb-6"
               style={{
                 background: `linear-gradient(90deg, ${project.accentColor}50, transparent)`,
               }}
@@ -286,38 +283,6 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
                   </motion.span>
                 ))}
               </div>
-            </motion.div>
-
-            {/* ── Tags ── */}
-            <motion.div variants={itemVariants} className="mb-8 sm:mb-10">
-              <SectionHeading accentColor={project.accentColor} label="Tags" />
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-white/5 border border-white/8 text-white/35"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* ── Footer Nav ── */}
-            <motion.div
-              variants={itemVariants}
-              className="pt-5 sm:pt-6 border-t border-white/6 flex items-center justify-between"
-            >
-              <button
-                onClick={() => router.push("/projects")}
-                className="flex items-center gap-2 text-xs sm:text-sm text-white/35 hover:text-white transition-colors"
-              >
-                <ArrowLeft size={13} />
-                All Projects
-              </button>
-              <span className="text-[10px] text-white/20 font-mono">
-                {project.id}
-              </span>
             </motion.div>
           </motion.div>
         </div>
