@@ -14,6 +14,8 @@ export default function Home() {
           <MainFeaturedProject
             titlePrefix="FULL - STACK"
             titleSuffix="DEVELOPER"
+            viewProjectsHref="/projects"
+            contactHref="/contact"
           />
         </div>
       }
