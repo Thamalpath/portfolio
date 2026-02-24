@@ -136,7 +136,7 @@ export default function RightSidePanel({ name }: RightSidePanelProps) {
           Tech Stack
         </h3>
         <div className="flex-1 pr-2">
-          <div className="h-full overflow-y-auto overflow-x-visible">
+          <div className="custom-scroll h-full overflow-y-auto overflow-x-visible">
             <div className="grid grid-cols-4 gap-4 py-4 px-2">
               {techStack.map((tech, index) => (
                 <TechItem key={tech.name} tech={tech} index={index} />

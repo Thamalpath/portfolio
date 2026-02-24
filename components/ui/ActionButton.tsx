@@ -10,6 +10,7 @@ interface ActionButtonProps {
   onClick?: () => void;
   className?: string;
   activeColor?: string;
+  href?: string;
 }
 
 export default function ActionButton({
