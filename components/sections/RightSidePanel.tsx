@@ -1,44 +1,69 @@
 "use client";
 
-import { 
-  Github, Linkedin, Mail, Globe, Cpu, Server, Database, Code2, Sparkles, Box, Cloud, Flame, GitCommit, 
-  Workflow, Terminal, Wind
-} from "lucide-react";
+import { Github, Linkedin, Mail, Globe, Sparkles } from "lucide-react";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiBootstrap,
+  SiMysql,
+  SiPhp,
+  SiLaravel,
+  SiHtml5,
+  SiCss3,
+} from "react-icons/si";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
-import { cn } from "@/lib/utils";
 
 interface RightSidePanelProps {
   name: string;
 }
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/Thamalpath", label: "GitHub", color: "hover:text-white" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/thamalpath-liyanage/", label: "LinkedIn", color: "hover:text-[#0077b5]" },
-  { icon: Mail, href: "mailto:hello@example.com", label: "Email", color: "hover:text-[#ea4335]" },
+  {
+    icon: Github,
+    href: "https://github.com/Thamalpath",
+    label: "GitHub",
+    color: "hover:text-white",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/thamalpath-liyanage/",
+    label: "LinkedIn",
+    color: "hover:text-[#0077b5]",
+  },
+  {
+    icon: Mail,
+    href: "mailto:hello@example.com",
+    label: "Email",
+    color: "hover:text-[#ea4335]",
+  },
   { icon: Globe, href: "#", label: "Website", color: "hover:text-neon-blue" },
 ];
 
-const techStack = [
-  { name: "React", icon: Cpu, color: "text-cyan-400" },
-  { name: "Next.js", icon: Sparkles, color: "text-white" },
-  { name: "TypeScript", icon: Code2, color: "text-blue-500" },
-  { name: "Node.js", icon: Server, color: "text-emerald-500" },
-  { name: "PostgreSQL", icon: Database, color: "text-indigo-400" },
-  { name: "MongoDB", icon: Database, color: "text-green-500" },
-  { name: "Tailwind CSS", icon: Wind, color: "text-teal-400" },
-  { name: "Docker", icon: Box, color: "text-blue-400" },
-  { name: "AWS", icon: Cloud, color: "text-orange-400" },
-  { name: "Firebase", icon: Flame, color: "text-yellow-500" },
-  { name: "Redux / Toolkit", icon: Workflow, color: "text-purple-500" },
-  { name: "Git", icon: GitCommit, color: "text-orange-600" },
-  { name: "Express", icon: Terminal, color: "text-gray-300" },
+export const techStack = [
+  { name: "React", icon: SiReact, color: "text-[#61DAFB]" },
+  { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
+  { name: "TypeScript", icon: SiTypescript, color: "text-[#3178C6]" },
+  { name: "JavaScript", icon: SiJavascript, color: "text-[#F7DF1E]" },
+  { name: "Node.js", icon: SiNodedotjs, color: "text-[#339933]" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-[#38B2AC]" },
+  { name: "Bootstrap", icon: SiBootstrap, color: "text-[#7952B3]" },
+  { name: "MySQL", icon: SiMysql, color: "text-[#4479A1]" },
+  { name: "PHP", icon: SiPhp, color: "text-[#777BB4]" },
+  { name: "Laravel", icon: SiLaravel, color: "text-[#FF2D20]" },
+  { name: "HTML5", icon: SiHtml5, color: "text-[#E34F26]" },
+  { name: "CSS3", icon: SiCss3, color: "text-[#1572B6]" },
 ];
 
 const springTransition = {
   type: "spring",
   stiffness: 400,
-  damping: 15
+  damping: 15,
 } as const;
 
 export default function RightSidePanel({ name }: RightSidePanelProps) {
@@ -50,7 +75,7 @@ export default function RightSidePanel({ name }: RightSidePanelProps) {
     >
       {/* Background Decor */}
       <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-neon-blue/10 rounded-full blur-3xl pointer-events-none group-hover:bg-neon-blue/20 transition-colors duration-500" />
-      
+
       {/* Profile Section */}
       <div className="relative z-10 flex flex-col gap-2">
         <div className="flex items-center justify-between">
@@ -65,7 +90,7 @@ export default function RightSidePanel({ name }: RightSidePanelProps) {
           </div>
         </div>
         <p className="text-sm text-gray-400 leading-relaxed mt-2">
-          Building high-performance scalable systems with modern technologies. 
+          Building high-performance scalable systems with modern technologies.
           Focused on architecture and user experience.
         </p>
       </div>
@@ -81,20 +106,22 @@ export default function RightSidePanel({ name }: RightSidePanelProps) {
             <motion.a
               key={link.label}
               href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                delay: index * 0.1, 
+              transition={{
+                delay: index * 0.1,
                 type: "spring",
                 stiffness: 400,
-                damping: 15
+                damping: 15,
               }}
               whileHover={{ y: -8, scale: 1.15 }}
               whileTap={{ scale: 0.9 }}
               className={cn(
                 "w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 transition-colors duration-300",
                 link.color,
-                "hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                "hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]",
               )}
             >
               <link.icon size={22} />
@@ -105,74 +132,69 @@ export default function RightSidePanel({ name }: RightSidePanelProps) {
 
       {/* Tech Stack */}
       <div className="relative z-10 flex-1 flex flex-col min-h-0">
-        <h3 className="text-xs font-bold uppercase tracking-widest opacity-40 mb-4">
+        <h3 className="text-xs font-bold uppercase tracking-widest opacity-40">
           Tech Stack
         </h3>
-        <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-          <div className="grid grid-cols-4 gap-4">
-            {techStack.map((tech, index) => (
-              <TechItem key={tech.name} tech={tech} index={index} />
-            ))}
+        <div className="flex-1 pr-2">
+          <div className="h-full overflow-y-auto overflow-x-visible">
+            <div className="grid grid-cols-4 gap-4 py-4 px-2">
+              {techStack.map((tech, index) => (
+                <TechItem key={tech.name} tech={tech} index={index} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Media Pulse (Visual Element) */}
       <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
-      
-      <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 255, 255, 0.2);
-        }
-      `}</style>
     </GlassCard>
   );
 }
 
-function TechItem({ tech, index }: { tech: typeof techStack[0]; index: number }) {
+function TechItem({
+  tech,
+  index,
+}: {
+  tech: (typeof techStack)[0];
+  index: number;
+}) {
   return (
-    <div className="flex items-center justify-center" style={{ perspective: "1000px" }}>
+    <div
+      className="flex items-center justify-center group"
+      style={{ perspective: "1000px" }}
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.8, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ 
+        transition={{
           delay: 0.2 + index * 0.05,
           type: "spring",
           stiffness: 260,
-          damping: 20
+          damping: 20,
         }}
-        whileHover={{ 
+        whileHover={{
           scale: 1.1,
           y: -10,
           rotateY: 15,
           rotateX: -10,
           z: 50,
-          transition: { 
-            type: "spring", 
-            stiffness: 400, 
-            damping: 25 
-          }
+          transition: {
+            type: "spring",
+            stiffness: 400,
+            damping: 25,
+          },
         }}
         whileTap={{ scale: 0.95 }}
         className={cn(
-          "w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-colors duration-500 cursor-pointer shadow-lg relative preserve-3d",
+          "w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-colors duration-500 cursor-pointer shadow-lg relative preserve-3d transform-gpu",
           "hover:bg-white/10 hover:border-white/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]",
-          tech.color
+          tech.color,
         )}
       >
         {/* Shine/Refraction Effect */}
         <div className="absolute inset-0 rounded-2xl bg-linear-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        
+
         <tech.icon size={22} className="relative z-10" />
       </motion.div>
     </div>
