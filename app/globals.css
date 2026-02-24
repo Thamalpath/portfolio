@@ -17,11 +17,16 @@
   --color-neon-pink: #ff0055;
 }
 
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  overflow-x: hidden;
 }
 
 /* Glassmorphism Utilities */
@@ -61,4 +66,35 @@ body {
 *:focus-visible {
   outline: 2px solid var(--color-neon-blue);
   outline-offset: 2px;
+}
+
+/* ── Custome scrollbar ── */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 240, 255, 0.25) transparent;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  /* Inset from top and bottom to stay clear of the card's rounded corners */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.2);
+  border-radius: 99px;
+  transition: background 0.3s ease;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.45);
+}
+
+.custom-scroll::-webkit-scrollbar-corner {
+  background: transparent;
 }
