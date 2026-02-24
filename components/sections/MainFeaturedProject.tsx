@@ -4,13 +4,11 @@ import { motion } from "framer-motion";
 import ActionButton from "@/components/ui/ActionButton";
 
 interface MainFeaturedProjectProps {
-  projectNumber: string;
   titlePrefix: string;
   titleSuffix: string;
 }
 
 export default function MainFeaturedProject({
-  projectNumber,
   titlePrefix,
   titleSuffix,
 }: MainFeaturedProjectProps) {
@@ -28,7 +26,7 @@ export default function MainFeaturedProject({
             loop
             muted
             playsInline
-            className="w-full h-full object-cover mix-blend-lighten opacity-120 brightness-80 contrast-120 transition-opacity duration-800"
+            className="w-full h-full object-cover mix-blend-lighten opacity-100 brightness-75 contrast-125 transition-opacity duration-800"
           >
             <source src="/moonlit-ronin.mp4" type="video/mp4" />
           </video>
@@ -45,15 +43,13 @@ export default function MainFeaturedProject({
 
         {/* Branding Content */}
         <div className="max-w-md mt-auto mb-8 md:mb-12">
-          <span className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase opacity-60 mb-2 block text-center md:text-left">
-            {projectNumber}
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 md:mb-10 tracking-tighter leading-tight font-mono text-center md:text-left">
+          <h1 className="text-3xl md:text-6xl 2xl:text-6xl font-black mb-6 md:mb-10 tracking-normal leading-tight font-sans">
             {titlePrefix} <span className="text-neon-blue">{titleSuffix}</span>
           </h1>
 
-          <div className="flex justify-center md:justify-start">
-            <ActionButton label="View Experience" />
+          <div className="flex gap-4">
+            <ActionButton label="View Projects" />
+            <ActionButton label="Contact Me" />
           </div>
         </div>
       </div>

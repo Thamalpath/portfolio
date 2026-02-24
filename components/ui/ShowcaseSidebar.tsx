@@ -34,18 +34,16 @@ export default function ShowcaseSidebar({ activeTab = "home" }: SidebarProps) {
         </div>
       </aside>
 
-      {/* Mobile/Tablet Bottom Navigation */}
-      <nav className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-md">
-        <div className="bg-black/60 backdrop-blur-3xl border border-white/10 rounded-full px-4 py-3 flex items-center justify-around shadow-2xl">
-          {navItems.map((item) => (
-            <MobileNavItem
-              key={item.id}
-              icon={item.icon}
-              active={activeTab === item.id}
-            />
-          ))}
-        </div>
-      </nav>
+      {/* Mobile Navigation */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 flex md:hidden items-center gap-2 p-2 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-full z-100 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+        {navItems.map((item) => (
+          <MobileNavItem
+            key={item.id}
+            icon={item.icon}
+            active={activeTab === item.id}
+          />
+        ))}
+      </div>
     </>
   );
 }
@@ -61,13 +59,13 @@ function MobileNavItem({
     <motion.div
       whileTap={{ scale: 0.9 }}
       className={cn(
-        "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
+        "w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 relative",
         active
-          ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]"
-          : "text-gray-400",
+          ? "bg-neon-blue text-black shadow-[0_0_20px_rgba(0,240,255,0.4)]"
+          : "bg-white/5 text-gray-400",
       )}
     >
-      <Icon size={20} />
+      <Icon size={20} strokeWidth={active ? 2.5 : 2} />
     </motion.div>
   );
 }
