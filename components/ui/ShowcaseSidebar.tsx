@@ -1,23 +1,26 @@
 "use client";
 
-import { Home, Briefcase, Code, History, Mail, LucideIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Home, Briefcase, Code, History, Mail, LucideIcon } from "lucide-react";
 
 interface SidebarProps {
   activeTab?: string;
 }
 
 const navItems = [
-  { id: "home", icon: Home, label: "Home" },
-  { id: "projects", icon: Briefcase, label: "Projects" },
-  { id: "skills", icon: Code, label: "Skills" },
-  { id: "experience", icon: History, label: "Experience" },
-  { id: "contact", icon: Mail, label: "Contact" },
+  { id: "home", icon: Home, label: "Home", href: "/" },
+  { id: "projects", icon: Briefcase, label: "Projects", href: "/projects" },
+  { id: "skills", icon: Code, label: "Skills", href: "/skills" },
+  { id: "experience", icon: History, label: "Experience", href: "/experience" },
+  { id: "contact", icon: Mail, label: "Contact", href: "/contact" },
 ];
 
 export default function ShowcaseSidebar({ activeTab = "home" }: SidebarProps) {
+  const router = useRouter();
+
   return (
     <>
       {/* Desktop Sidebar */}
@@ -29,6 +32,7 @@ export default function ShowcaseSidebar({ activeTab = "home" }: SidebarProps) {
               icon={item.icon}
               label={item.label}
               active={activeTab === item.id}
+              onClick={() => router.push(item.href)}
             />
           ))}
         </div>
@@ -40,7 +44,9 @@ export default function ShowcaseSidebar({ activeTab = "home" }: SidebarProps) {
           <MobileNavItem
             key={item.id}
             icon={item.icon}
+            label={item.label}
             active={activeTab === item.id}
+            onClick={() => router.push(item.href)}
           />
         ))}
       </div>
@@ -50,22 +56,35 @@ export default function ShowcaseSidebar({ activeTab = "home" }: SidebarProps) {
 
 function MobileNavItem({
   icon: Icon,
+  label,
   active = false,
+  onClick,
 }: {
   icon: LucideIcon;
+  label: string;
   active?: boolean;
+  onClick?: () => void;
 }) {
   return (
     <motion.div
-      whileTap={{ scale: 0.9 }}
+      whileTap={{ scale: 0.85 }}
+      whileHover={{ scale: 1.1 }}
+      onClick={onClick}
+      title={label}
       className={cn(
         "w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 relative",
         active
           ? "bg-neon-blue text-black shadow-[0_0_20px_rgba(0,240,255,0.4)]"
-          : "bg-white/5 text-gray-400",
+          : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white",
       )}
     >
       <Icon size={20} strokeWidth={active ? 2.5 : 2} />
+      {active && (
+        <motion.div
+          layoutId="mobileActiveGlow"
+          className="absolute -inset-1 bg-neon-blue/20 blur-md rounded-full -z-10"
+        />
+      )}
     </motion.div>
   );
 }
@@ -74,10 +93,12 @@ function NavItem({
   icon: Icon,
   label,
   active = false,
+  onClick,
 }: {
   icon: LucideIcon;
   label: string;
   active?: boolean;
+  onClick?: () => void;
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -95,6 +116,7 @@ function NavItem({
           z: 20,
         }}
         whileTap={{ scale: 0.95 }}
+        onClick={onClick}
         className={cn(
           "w-14 h-14 rounded-2xl flex items-center justify-center cursor-pointer transition-all duration-300 relative preserve-3d shadow-xl",
           "before:absolute before:inset-0 before:rounded-2xl before:border before:border-white/20 before:pointer-events-none",

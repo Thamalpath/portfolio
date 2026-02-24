@@ -1,16 +1,19 @@
 "use client";
 
-import { motion } from "framer-motion";
 import ActionButton from "@/components/ui/ActionButton";
 
 interface MainFeaturedProjectProps {
   titlePrefix: string;
   titleSuffix: string;
+  viewProjectsHref?: string;
+  contactHref?: string;
 }
 
 export default function MainFeaturedProject({
   titlePrefix,
   titleSuffix,
+  viewProjectsHref,
+  contactHref,
 }: MainFeaturedProjectProps) {
   return (
     <div className="relative flex-1 flex flex-col p-6 md:p-12 justify-between min-h-[400px] md:min-h-[500px]">
@@ -48,8 +51,8 @@ export default function MainFeaturedProject({
           </h1>
 
           <div className="flex gap-4">
-            <ActionButton label="View Projects" />
-            <ActionButton label="Contact Me" />
+            <ActionButton label="View Projects" href={viewProjectsHref} />
+            <ActionButton label="Contact Me" href={contactHref} />
           </div>
         </div>
       </div>
