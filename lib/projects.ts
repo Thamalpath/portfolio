@@ -30,7 +30,7 @@ export const projects: Project[] = [
     description:
       "A scalable full-stack distribution system with real-time inventory tracking, order lifecycle workflows, and role-based dashboards.",
     longDescription:
-      "Samudra Distribution is a production-grade distribution management system developed to streamline business operations. Built using React and Laravel with MySQL, the platform enables real-time inventory tracking, order lifecycle monitoring, and secure role-based dashboards. Optimized REST APIs ensure seamless client–server communication while structured database schemas improve scalability and performance.",
+      "A full-stack distribution and order management system developed using React, Laravel, and MySQL. The platform streamlines end-to-end distribution workflows including order creation, approvals, branch assignment, payment tracking, and delivery status management. It features role-based access, real-time order tracking, document uploads, and an intuitive dashboard to improve operational efficiency and visibility across the distribution process.",
     category: "Full-Stack",
     techStack: ["React", "Laravel", "MySQL", "REST API", "Tailwind CSS"],
     year: "2025-2026",
@@ -48,20 +48,31 @@ export const projects: Project[] = [
     media: [
       {
         type: "image",
-        url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000",
-        caption: "Inventory Dashboard Preview",
+        url: "/projects/samudra1.png",
+        caption: "Login Interface",
       },
       {
         type: "image",
-        url: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=2000",
-        caption: "Distribution Workflow Interface",
+        url: "/projects/samudra2.png",
+        caption: "Order Management Dashboard",
       },
       {
-        type: "video",
-        url: "https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-world-map-1052-large.mp4",
-        caption: "Global Distribution Network Demo",
-        thumbnail: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=2000",
+        type: "image",
+        url: "/projects/samudra3.jpg",
+        caption: "Distribution/order Workflow Interface",
       },
+      {
+        type: "image",
+        url: "/projects/samudra4.png",
+        caption: "Role & Permission Management",
+      },
+      // {
+      //   type: "video",
+      //   url: "https://www.pexels.com/download/video/6447409/",
+      //   caption: "Global Distribution Network Demo",
+      //   thumbnail:
+      //     "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=2000",
+      // },
     ],
   },
 
@@ -119,7 +130,7 @@ export const projects: Project[] = [
     status: "Live",
     featured: true,
     accentColor: "#10b981",
-    liveUrl: "",
+    liveUrl: "http://oitres.onimtaitsl.com/",
     highlights: [
       "Room booking & availability management",
       "Restaurant billing integration",
@@ -138,11 +149,12 @@ export const projects: Project[] = [
         url: "https://images.unsplash.com/photo-1551882547-ff43c6360b3a?auto=format&fit=crop&q=80&w=2000",
         caption: "Guest Check-in Dashboard",
       },
-       {
+      {
         type: "video",
         url: "https://assets.mixkit.co/videos/preview/mixkit-hand-holding-a-smart-watch-with-a-blue-interface-34534-large.mp4",
         caption: "Booking Process Walkthrough",
-        thumbnail: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=2000",
+        thumbnail:
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=2000",
       },
     ],
   },
@@ -214,7 +226,8 @@ export const projects: Project[] = [
         type: "video",
         url: "https://assets.mixkit.co/videos/preview/mixkit-futuristic-binary-digital-interface-30514-large.mp4",
         caption: "Real-time Data Sync Demo",
-        thumbnail: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=2000",
+        thumbnail:
+          "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=2000",
       },
     ],
   },
