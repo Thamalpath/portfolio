@@ -1,15 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Play,
-  Image as ImageIcon,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
 import type { MediaItem } from "@/lib/projects";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 
 interface ProjectMediaProps {
   media: MediaItem[];
@@ -40,10 +34,17 @@ export default function ProjectMedia({
 }: ProjectMediaProps) {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   // Pause all videos then play the current one
   useEffect(() => {
+    // If lightbox is open, we might want to pause videos anyway
+    if (isLightboxOpen) {
+      videoRefs.current.forEach((v) => v?.pause());
+      return;
+    }
+
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
       if (i === current) {
@@ -53,7 +54,7 @@ export default function ProjectMedia({
         v.pause();
       }
     });
-  }, [current]);
+  }, [current, isLightboxOpen]);
 
   const go = useCallback(
     (dir: number) => {
@@ -73,6 +74,7 @@ export default function ProjectMedia({
     const handler = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") go(-1);
       if (e.key === "ArrowRight") go(1);
+      if (e.key === "Escape") setIsLightboxOpen(false);
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
@@ -106,46 +108,57 @@ export default function ProjectMedia({
             className="absolute inset-0"
           >
             {item.type === "video" ? (
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full z-10">
                 <video
                   ref={(el) => {
                     videoRefs.current[current] = el;
                   }}
                   src={item.url}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain relative z-10"
                   autoPlay
                   muted
                   loop
                   playsInline
                 />
                 {/* Video badge */}
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1.5 rounded-xl border border-white/10 shadow-lg z-20">
                   <Play size={9} className="fill-white text-white" />
                   <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-white">
-                    Video
+                    Live Demo
                   </span>
                 </div>
               </div>
             ) : (
-              <img
-                src={item.url}
-                alt={item.caption ?? `Slide ${current + 1}`}
-                className="w-full h-full object-cover"
-                draggable={false}
-              />
+              <motion.div
+                className="relative w-full h-full z-10 cursor-zoom-in"
+                onClick={() => setIsLightboxOpen(true)}
+              >
+                <img
+                  src={item.url}
+                  alt={item.caption ?? `Slide ${current + 1}`}
+                  className="w-full h-full object-contain"
+                  draggable={false}
+                />
+              </motion.div>
             )}
 
-            {/* Caption gradient overlay */}
+            {/* Caption Overlay */}
             {item.caption && (
               <motion.div
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.3 }}
-                className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 py-4 sm:py-6 bg-linear-to-t from-black/80 via-black/30 to-transparent pointer-events-none"
+                transition={{ delay: 0.2, duration: 0.4 }}
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 w-[90%] sm:w-auto"
               >
-                <p className="text-white text-xs sm:text-sm font-medium tracking-wide">
-                  {item.caption}
-                </p>
+                <div className="px-5 py-2.5 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 shadow-2xl text-center">
+                  <p className="text-white text-[11px] sm:text-xs font-semibold tracking-wide flex items-center justify-center gap-2">
+                    <span
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ backgroundColor: accentColor }}
+                    />
+                    {item.caption}
+                  </p>
+                </div>
               </motion.div>
             )}
           </motion.div>
@@ -186,9 +199,9 @@ export default function ProjectMedia({
           </div>
         )}
 
-        {/* ── Dot indicators ── */}
+        {/* ── Dot indicators - Bottom center ── */}
         {media.length > 1 && (
-          <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
             {media.map((_, i) => (
               <button
                 key={i}
@@ -276,6 +289,58 @@ export default function ProjectMedia({
           ))}
         </div>
       )}
+      {/* ── Lightbox Overlay ── */}
+      <AnimatePresence>
+        {isLightboxOpen && item.type === "image" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-10 bg-black/90 backdrop-blur-xl"
+            onClick={() => setIsLightboxOpen(false)}
+          >
+            <motion.button
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors z-110"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsLightboxOpen(false);
+              }}
+              whileHover={{ rotate: 90 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <X size={24} />
+            </motion.button>
+
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="relative max-w-7xl w-full max-h-full flex flex-col items-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={item.url}
+                alt={item.caption ?? "Enlarged view"}
+                className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.8)]"
+              />
+
+              {item.caption && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="mt-6 px-6 py-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-center max-w-xl"
+                >
+                  <p className="text-white/80 text-sm font-medium">
+                    {item.caption}
+                  </p>
+                </motion.div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
