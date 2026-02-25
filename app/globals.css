@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  /* Using a deep dark almost-black navy for futuristic feel */
   --background: #030014;
   --foreground: #ffffff;
 }
@@ -62,7 +61,6 @@ body {
   text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
 }
 
-/* Standardized focus styles for accessibility without breaking theme */
 *:focus-visible {
   outline: 2px solid var(--color-neon-blue);
   outline-offset: 2px;
@@ -80,7 +78,6 @@ body {
 
 .custom-scroll::-webkit-scrollbar-track {
   background: transparent;
-  /* Inset from top and bottom to stay clear of the card's rounded corners */
   margin-top: 20px;
   margin-bottom: 20px;
 }
