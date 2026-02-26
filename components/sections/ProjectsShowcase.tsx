@@ -69,7 +69,7 @@ export default function ProjectsShowcase() {
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
-    <div className="relative flex-1 flex flex-col overflow-hidden">
+    <div className="relative flex-1 flex flex-col min-h-0 overflow-hidden rounded-[35px] md:rounded-[50px]">
       {/* Background */}
       <div className="absolute inset-0 z-0 bg-[#030014]">
         <div className="absolute inset-0 opacity-[0.07] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -78,7 +78,7 @@ export default function ProjectsShowcase() {
       </div>
 
       {/* Scrollable content */}
-      <div className="custom-scroll relative z-10 flex-1 overflow-y-auto">
+      <div className="absolute inset-0 z-10 custom-scroll overflow-y-auto overflow-x-hidden">
         <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 max-w-[1400px] mx-auto w-full">
           {/* ── Page Header ── */}
           <motion.div
