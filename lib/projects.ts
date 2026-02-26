@@ -89,7 +89,7 @@ export const projects: Project[] = [
     year: "2025-2026",
     status: "Live",
     featured: true,
-    accentColor: "#ae42eb",
+    accentColor: "#6366f1",
     liveUrl: "https://venpaa.onimtaitsl.com/",
     highlights: [
       "Integrated e-commerce and POS sales management",
