@@ -4,7 +4,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Briefcase, Code, History, Mail, LucideIcon } from "lucide-react";
+import { Home, Rocket, Code2, Briefcase, Mail, LucideIcon } from "lucide-react";
 
 interface SidebarProps {
   activeTab?: string;
@@ -12,9 +12,19 @@ interface SidebarProps {
 
 const navItems = [
   { id: "home", icon: Home, label: "Home", href: "/" },
-  { id: "projects", icon: Briefcase, label: "Projects", href: "/projects" },
-  { id: "skills", icon: Code, label: "Skills", href: "/skills" },
-  { id: "experience", icon: History, label: "Experience", href: "/experience" },
+  {
+    id: "projects",
+    icon: Rocket,
+    label: "Projects",
+    href: "/projects",
+  },
+  { id: "skills", icon: Code2, label: "Skills", href: "/skills" },
+  {
+    id: "experience",
+    icon: Briefcase,
+    label: "Experience",
+    href: "/experience",
+  },
   { id: "contact", icon: Mail, label: "Contact", href: "/contact" },
 ];
 
