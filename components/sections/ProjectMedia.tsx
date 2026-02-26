@@ -85,12 +85,18 @@ export default function ProjectMedia({
   const item = media[current];
 
   return (
-    <div className="mb-8 sm:mb-12 select-none">
+    <div className="mb-4 sm:mb-6 select-none">
       {/* ── Main Viewport ── */}
       <div
-        className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-black group"
-        style={{ aspectRatio: "16/9" }}
+        className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-black group isolate"
+        style={{
+          aspectRatio: "16/9",
+          maskImage: "-webkit-radial-gradient(white, black)",
+        }}
       >
+        {/* Border Overlay */}
+        <div className="absolute inset-0 z-50 rounded-2xl sm:rounded-3xl border border-white/10 pointer-events-none" />
+
         {/* Slides */}
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
@@ -105,10 +111,54 @@ export default function ProjectMedia({
               opacity: { duration: 0.18 },
               scale: { duration: 0.35 },
             }}
-            className="absolute inset-0"
+            className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden"
           >
+            {/* Glass Background */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-2xl sm:rounded-3xl">
+              {/* Base blur */}
+              <div
+                className="
+                  absolute inset-0
+                  backdrop-blur-[80px]
+                  backdrop-saturate-200
+                  bg-white/10
+                  rounded-2xl sm:rounded-3xl
+                "
+              />
+
+              {/* Soft light gradient */}
+              <div
+                className="
+                  absolute inset-0
+                  bg-linear-to-br
+                  from-white/40
+                  via-white/10
+                  to-transparent
+                  opacity-60
+                  rounded-2xl sm:rounded-3xl
+                "
+              />
+
+              {/* Subtle border glow */}
+              <div
+                className="
+                  absolute inset-0
+                  rounded-2xl sm:rounded-3xl
+                  border border-white/30
+                  shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),0_8px_32px_rgba(0,0,0,0.3)]
+                "
+              />
+
+              {/* Dark contrast layer */}
+              <div className="absolute inset-0 bg-black/20" />
+            </div>
+
+            {/* Main Content */}
             {item.type === "video" ? (
-              <div className="relative w-full h-full z-10">
+              <div
+                className="relative w-full h-full z-10 flex items-center justify-center cursor-zoom-in"
+                onClick={() => setIsLightboxOpen(true)}
+              >
                 <video
                   ref={(el) => {
                     videoRefs.current[current] = el;
@@ -136,7 +186,7 @@ export default function ProjectMedia({
                 <img
                   src={item.url}
                   alt={item.caption ?? `Slide ${current + 1}`}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain relative z-10"
                   draggable={false}
                 />
               </motion.div>
@@ -291,14 +341,15 @@ export default function ProjectMedia({
       )}
       {/* ── Lightbox Overlay ── */}
       <AnimatePresence>
-        {isLightboxOpen && item.type === "image" && (
+        {isLightboxOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-10 bg-black/90 backdrop-blur-xl"
+            className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-10 bg-black/95 backdrop-blur-2xl"
             onClick={() => setIsLightboxOpen(false)}
           >
+            {/* Close Button */}
             <motion.button
               className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors z-110"
               onClick={(e) => {
@@ -311,28 +362,69 @@ export default function ProjectMedia({
               <X size={24} />
             </motion.button>
 
+            {/* Lightbox Navigation */}
+            {media.length > 1 && (
+              <div className="absolute inset-x-4 sm:inset-x-10 top-1/2 -translate-y-1/2 flex items-center justify-between z-110 pointer-events-none">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    go(-1);
+                  }}
+                  className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-white transition-all pointer-events-auto group"
+                >
+                  <ChevronLeft
+                    size={32}
+                    className="group-hover:-translate-x-1 transition-transform"
+                  />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    go(1);
+                  }}
+                  className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-white transition-all pointer-events-auto group"
+                >
+                  <ChevronRight
+                    size={32}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </button>
+              </div>
+            )}
+
             <motion.div
+              key={current}
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="relative max-w-7xl w-full max-h-full flex flex-col items-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={item.url}
-                alt={item.caption ?? "Enlarged view"}
-                className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.8)]"
-              />
+              {item.type === "video" ? (
+                <video
+                  src={item.url}
+                  className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.9)]"
+                  autoPlay
+                  controls
+                  playsInline
+                />
+              ) : (
+                <img
+                  src={item.url}
+                  alt={item.caption ?? "Enlarged view"}
+                  className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.9)]"
+                />
+              )}
 
               {item.caption && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="mt-6 px-6 py-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-center max-w-xl"
+                  transition={{ delay: 0.1 }}
+                  className="mt-3 px-4 py-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-center max-w-2xl"
                 >
-                  <p className="text-white/80 text-sm font-medium">
+                  <p className="text-white/90 text-sm sm:text-base font-medium">
                     {item.caption}
                   </p>
                 </motion.div>
