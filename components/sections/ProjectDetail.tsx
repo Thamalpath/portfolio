@@ -166,7 +166,7 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
               </h1>
 
               {/* Tagline */}
-              <p className="text-sm sm:text-base md:text-lg text-white/55 font-medium leading-relaxed mb-2 sm:mb-4">
+              <p className="text-xm sm:text-sm md:text-base text-white/55 font-medium leading-relaxed mb-2 sm:mb-4">
                 {project.tagline}
               </p>
             </motion.div>
@@ -198,9 +198,9 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
             {/* ── Media Showcase ── */}
             {project.media && project.media.length > 0 && (
               <motion.div variants={itemVariants}>
-                <ProjectMedia 
-                  media={project.media} 
-                  accentColor={project.accentColor} 
+                <ProjectMedia
+                  media={project.media}
+                  accentColor={project.accentColor}
                 />
               </motion.div>
             )}
@@ -215,7 +215,7 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
             />
 
             {/* ── About ── */}
-            <motion.div variants={itemVariants} className="mb-8 sm:mb-10">
+            <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
               <SectionHeading
                 accentColor={project.accentColor}
                 label="About this project"
@@ -226,7 +226,7 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
             </motion.div>
 
             {/* ── Highlights ── */}
-            <motion.div variants={itemVariants} className="mb-8 sm:mb-10">
+            <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
               <SectionHeading
                 accentColor={project.accentColor}
                 label="Key Highlights"
@@ -256,7 +256,7 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
             </motion.div>
 
             {/* ── Tech Stack ── */}
-            <motion.div variants={itemVariants} className="mb-8 sm:mb-10">
+            <motion.div variants={itemVariants}>
               <SectionHeading
                 accentColor={project.accentColor}
                 label="Tech Stack"
