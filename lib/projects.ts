@@ -105,13 +105,13 @@ export const projects: Project[] = [
     media: [
       {
         type: "image",
-        url: "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=2000",
-        caption: "Centralized Management Console",
+        url: "/projects/venpa2.png",
+        caption: "Login Interface",
       },
       {
         type: "image",
-        url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000",
-        caption: "Financial Analytics Module",
+        url: "/projects/venpa1.png",
+        caption: "Pos sales summary",
       },
     ],
   },
