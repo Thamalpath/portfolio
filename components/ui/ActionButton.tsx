@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -19,8 +20,9 @@ export default function ActionButton({
   onClick,
   className,
   activeColor = "bg-neon-blue",
+  href,
 }: ActionButtonProps) {
-  return (
+  const content = (
     <motion.button
       whileHover={{ scale: 1.02, x: 5 }}
       whileTap={{ scale: 0.98 }}
@@ -41,4 +43,10 @@ export default function ActionButton({
       </div>
     </motion.button>
   );
+
+  if (href) {
+    return <Link href={href}>{content}</Link>;
+  }
+
+  return content;
 }

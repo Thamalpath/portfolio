@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Home, Rocket, Code2, Briefcase, Mail, LucideIcon } from "lucide-react";
 
@@ -29,8 +29,6 @@ const navItems = [
 ];
 
 export default function ShowcaseSidebar({ activeTab = "home" }: SidebarProps) {
-  const router = useRouter();
-
   return (
     <>
       {/* Desktop Sidebar */}
@@ -42,7 +40,7 @@ export default function ShowcaseSidebar({ activeTab = "home" }: SidebarProps) {
               icon={item.icon}
               label={item.label}
               active={activeTab === item.id}
-              onClick={() => router.push(item.href)}
+              href={item.href}
             />
           ))}
         </div>
@@ -56,7 +54,7 @@ export default function ShowcaseSidebar({ activeTab = "home" }: SidebarProps) {
             icon={item.icon}
             label={item.label}
             active={activeTab === item.id}
-            onClick={() => router.push(item.href)}
+            href={item.href}
           />
         ))}
       </div>
@@ -68,34 +66,35 @@ function MobileNavItem({
   icon: Icon,
   label,
   active = false,
-  onClick,
+  href,
 }: {
   icon: LucideIcon;
   label: string;
   active?: boolean;
-  onClick?: () => void;
+  href: string;
 }) {
   return (
-    <motion.div
-      whileTap={{ scale: 0.85 }}
-      whileHover={{ scale: 1.1 }}
-      onClick={onClick}
-      title={label}
-      className={cn(
-        "w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 relative",
-        active
-          ? "bg-neon-blue text-black shadow-[0_0_20px_rgba(0,240,255,0.4)]"
-          : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white",
-      )}
-    >
-      <Icon size={20} strokeWidth={active ? 2.5 : 2} />
-      {active && (
-        <motion.div
-          layoutId="mobileActiveGlow"
-          className="absolute -inset-1 bg-neon-blue/20 blur-md rounded-full -z-10"
-        />
-      )}
-    </motion.div>
+    <Link href={href}>
+      <motion.div
+        whileTap={{ scale: 0.85 }}
+        whileHover={{ scale: 1.1 }}
+        title={label}
+        className={cn(
+          "w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 relative",
+          active
+            ? "bg-neon-blue text-black shadow-[0_0_20px_rgba(0,240,255,0.4)]"
+            : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white",
+        )}
+      >
+        <Icon size={20} strokeWidth={active ? 2.5 : 2} />
+        {active && (
+          <motion.div
+            layoutId="mobileActiveGlow"
+            className="absolute -inset-1 bg-neon-blue/20 blur-md rounded-full -z-10"
+          />
+        )}
+      </motion.div>
+    </Link>
   );
 }
 
@@ -103,65 +102,66 @@ function NavItem({
   icon: Icon,
   label,
   active = false,
-  onClick,
+  href,
 }: {
   icon: LucideIcon;
   label: string;
   active?: boolean;
-  onClick?: () => void;
+  href: string;
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className="relative flex items-center group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <motion.div
-        whileHover={{
-          scale: 1.1,
-          rotateY: 15,
-          rotateX: -5,
-          z: 20,
-        }}
-        whileTap={{ scale: 0.95 }}
-        onClick={onClick}
-        className={cn(
-          "w-14 h-14 rounded-2xl flex items-center justify-center cursor-pointer transition-all duration-300 relative preserve-3d shadow-xl",
-          "before:absolute before:inset-0 before:rounded-2xl before:border before:border-white/20 before:pointer-events-none",
-          active
-            ? "bg-neon-blue text-black shadow-[0_0_30px_rgba(0,240,255,0.6)]"
-            : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white",
-        )}
-        style={{ perspective: "1000px" }}
+    <Link href={href}>
+      <div
+        className="relative flex items-center group"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <Icon size={24} strokeWidth={active ? 2.5 : 2} />
+        <motion.div
+          whileHover={{
+            scale: 1.1,
+            rotateY: 15,
+            rotateX: -5,
+            z: 20,
+          }}
+          whileTap={{ scale: 0.95 }}
+          className={cn(
+            "w-14 h-14 rounded-2xl flex items-center justify-center cursor-pointer transition-all duration-300 relative preserve-3d shadow-xl",
+            "before:absolute before:inset-0 before:rounded-2xl before:border before:border-white/20 before:pointer-events-none",
+            active
+              ? "bg-neon-blue text-black shadow-[0_0_30px_rgba(0,240,255,0.6)]"
+              : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white",
+          )}
+          style={{ perspective: "1000px" }}
+        >
+          <Icon size={24} strokeWidth={active ? 2.5 : 2} />
 
-        {/* Active Glow Indicator */}
-        {active && (
-          <motion.div
-            layoutId="activeGlow"
-            className="absolute -inset-1 bg-neon-blue/20 blur-md rounded-3xl -z-10"
-          />
-        )}
-      </motion.div>
+          {/* Active Glow Indicator */}
+          {active && (
+            <motion.div
+              layoutId="activeGlow"
+              className="absolute -inset-1 bg-neon-blue/20 blur-md rounded-3xl -z-10"
+            />
+          )}
+        </motion.div>
 
-      {/* Tooltip */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            initial={{ opacity: 0, x: 10, scale: 0.9 }}
-            animate={{ opacity: 1, x: 20, scale: 1 }}
-            exit={{ opacity: 0, x: 10, scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="absolute left-full ml-4 px-4 py-2 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-xl text-white text-sm font-bold whitespace-nowrap shadow-2xl pointer-events-none z-100"
-          >
-            <div className="absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white/10 border-l border-t border-white/20 -rotate-45" />
-            {label}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        {/* Tooltip */}
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              initial={{ opacity: 0, x: 10, scale: 0.9 }}
+              animate={{ opacity: 1, x: 20, scale: 1 }}
+              exit={{ opacity: 0, x: 10, scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="absolute left-full ml-4 px-4 py-2 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-xl text-white text-sm font-bold whitespace-nowrap shadow-2xl pointer-events-none z-100"
+            >
+              <div className="absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white/10 border-l border-t border-white/20 -rotate-45" />
+              {label}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </Link>
   );
 }
