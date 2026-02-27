@@ -50,13 +50,13 @@ export default function ExperienceShowcase() {
       </div>
 
       <div className="absolute inset-0 z-10 custom-scroll overflow-y-auto overflow-x-hidden">
-        <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 max-w-[1400px] mx-auto w-full">
+        <div className="p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10 max-w-[1400px] mx-auto w-full">
           {/* ── Header ── */}
           <motion.div
             variants={headerVariants}
             initial="hidden"
             animate="visible"
-            className="mb-8 sm:mb-12"
+            className="mb-4 sm:mb-6"
           >
             <div className="flex items-center gap-2 mb-3">
               <Sparkles size={14} className="text-neon-blue" />
@@ -78,7 +78,7 @@ export default function ExperienceShowcase() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="relative space-y-6 sm:space-y-8 pb-20"
+            className="relative space-y-4 sm:space-y-4 md:space-y-6 lg:space-y-8 pb-4"
           >
             {/* Timeline Line */}
             {/* <div className="absolute left-[31px] top-4 bottom-24 w-px bg-linear-to-b from-neon-blue/30 via-neon-purple/20 to-transparent hidden sm:block" /> */}
@@ -87,7 +87,7 @@ export default function ExperienceShowcase() {
               <motion.div
                 key={exp.id}
                 variants={itemVariants}
-                className="relative flex flex-col md:flex-row gap-6 md:gap-12 pl-10 md:pl-0"
+                className="relative flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 pl-8 md:pl-0"
               >
                 {/* Timeline Dot */}
                 {/* <div className="absolute left-[31px] -translate-x-1/2 top-2 md:top-1.5 w-3.5 h-3.5 rounded-full bg-black border-[3px] border-neon-blue z-20 shadow-[0_0_12px_rgba(0,240,255,0.4)]" /> */}
@@ -112,7 +112,7 @@ export default function ExperienceShowcase() {
                 </div>
 
                 {/* Content Card */}
-                <div className="flex-1 glass-card p-5 sm:p-7 rounded-[24px] sm:rounded-[32px] hover:border-white/20 transition-all duration-500 group relative overflow-hidden">
+                <div className="flex-1 glass-card p-4 sm:p-6 rounded-[24px] sm:rounded-[32px] hover:border-white/20 transition-all duration-500 group relative overflow-hidden">
                   <div className="absolute -inset-24 bg-neon-blue/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                   <div className="relative z-10">
@@ -127,12 +127,12 @@ export default function ExperienceShowcase() {
                       </div>
                     </div>
 
-                    <p className="text-sm sm:text-base text-white/60 mb-6 font-medium leading-relaxed italic">
+                    {/* <p className="text-sm sm:text-base text-white/60 mb-4 font-medium leading-relaxed italic">
                       {exp.description}
-                    </p>
+                    </p> */}
 
                     {/* Achievements */}
-                    <div className="space-y-3 mb-8">
+                    <div className="space-y-3 mb-4">
                       {exp.achievements.map((item, i) => (
                         <div key={i} className="flex gap-3 group/item">
                           <CheckCircle2
@@ -151,7 +151,7 @@ export default function ExperienceShowcase() {
                       {exp.technologies.map((tech) => (
                         <div
                           key={tech}
-                          className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[10px] sm:text-xs font-bold text-white/50 uppercase tracking-widest hover:border-neon-blue/30 hover:text-white transition-all cursor-default"
+                          className="px-1.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[8px] sm:text-[10px] font-bold text-white/50 uppercase tracking-widest hover:border-neon-blue/30 hover:text-white transition-all cursor-default"
                         >
                           {tech}
                         </div>
