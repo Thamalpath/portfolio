@@ -93,7 +93,7 @@ export default function ProjectsShowcase() {
                 Portfolio
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black tracking-tight leading-none">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-black tracking-tight leading-none">
               My{" "}
               <span
                 className="text-neon-blue"

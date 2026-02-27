@@ -106,7 +106,7 @@ export default function SkillsShowcase() {
                 Expertise
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-none mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-black tracking-tight leading-none mb-4">
               Professional <br />
               <span className="text-neon-blue text-glow-blue">Skill Set</span>
             </h1>

@@ -64,10 +64,10 @@ export default function ExperienceShowcase() {
                 Professional Path
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black tracking-tight leading-none mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-black tracking-tight leading-none mb-4">
               Work <span className="text-neon-blue">Experience</span>
             </h1>
-            <p className="text-xs sm:text-base text-white/50 max-w-2xl font-medium leading-relaxed">
+            <p className="text-xs sm:text-sm text-white/50 max-w-2xl font-medium leading-relaxed">
               My professional journey as a software engineer, from building
               enterprise systems to crafting intuitive digital experiences.
             </p>
