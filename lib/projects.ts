@@ -105,13 +105,28 @@ export const projects: Project[] = [
     media: [
       {
         type: "image",
-        url: "/projects/venpa2.png",
+        url: "/projects/venpa1.png",
         caption: "Login Interface",
       },
       {
         type: "image",
-        url: "/projects/venpa1.png",
+        url: "/projects/venpa2.png",
+        caption: "Transaction Interface",
+      },
+      {
+        type: "image",
+        url: "/projects/venpa3.png",
         caption: "Pos sales summary",
+      },
+      {
+        type: "image",
+        url: "/projects/venpa4.png",
+        caption: "Invoice Form Interface",
+      },
+      {
+        type: "image",
+        url: "/projects/venpa5.png",
+        caption: "Payment Voucher Interface",
       },
     ],
   },
