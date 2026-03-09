@@ -166,12 +166,12 @@ export const projects: Project[] = [
     media: [
       {
         type: "image",
-        url: "/projects/barcode1.png",
+        url: "/projects/barcode1.PNG",
         caption: "Secure login interface for barcode printing system",
       },
       {
         type: "image",
-        url: "/projects/barcode2.png",
+        url: "/projects/barcode2.PNG",
         caption: "Main barcode printing dashboard",
       },
     ],
