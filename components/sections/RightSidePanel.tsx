@@ -38,7 +38,7 @@ const socialLinks = [
   },
   {
     icon: Mail,
-    href: "mailto:hello@example.com",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=thamalpathsathimantha3@gmail.com",
     label: "Email",
     color: "hover:text-[#ea4335]",
   },
