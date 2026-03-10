@@ -46,18 +46,18 @@ const socialLinks = [
 ];
 
 export const techStack = [
-  { name: "React", icon: SiReact, color: "text-[#61DAFB]" },
-  { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
-  { name: "TypeScript", icon: SiTypescript, color: "text-[#3178C6]" },
-  { name: "JavaScript", icon: SiJavascript, color: "text-[#F7DF1E]" },
-  { name: "Node.js", icon: SiNodedotjs, color: "text-[#339933]" },
-  { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-[#38B2AC]" },
-  { name: "Bootstrap", icon: SiBootstrap, color: "text-[#7952B3]" },
-  { name: "MySQL", icon: SiMysql, color: "text-[#4479A1]" },
-  { name: "PHP", icon: SiPhp, color: "text-[#777BB4]" },
-  { name: "Laravel", icon: SiLaravel, color: "text-[#FF2D20]" },
-  { name: "HTML5", icon: SiHtml5, color: "text-[#E34F26]" },
-  { name: "CSS3", icon: SiCss3, color: "text-[#1572B6]" },
+  { name: "React", icon: SiReact, color: "text-cyan-400" },
+  { name: "Next.js", icon: SiNextdotjs, color: "text-gray-100" },
+  { name: "TypeScript", icon: SiTypescript, color: "text-blue-500" },
+  { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
+  { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-sky-400" },
+  { name: "Bootstrap", icon: SiBootstrap, color: "text-purple-500" },
+  { name: "MySQL", icon: SiMysql, color: "text-blue-400" },
+  { name: "PHP", icon: SiPhp, color: "text-indigo-400" },
+  { name: "Laravel", icon: SiLaravel, color: "text-red-500" },
+  { name: "HTML5", icon: SiHtml5, color: "text-orange-500" },
+  { name: "CSS3", icon: SiCss3, color: "text-blue-400" },
 ];
 
 const springTransition = {
